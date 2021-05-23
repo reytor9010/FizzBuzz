@@ -6,7 +6,7 @@ namespace FizzBuzz
 	{
 		public static void AppendIfDivisible(this StringBuilder stringBuilder, int divident, int divider, string text)
 		{
-			if (divident % divider == 0)
+			if (divider != 0 && divident % divider == 0)
 			{
 				stringBuilder.Append(text);
 			}
