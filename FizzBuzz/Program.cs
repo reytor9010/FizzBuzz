@@ -1,15 +1,17 @@
 ﻿using System;
 
+using FizzBuzz.V2;
+
 namespace FizzBuzz
 {
 	class Program
 	{
 		static void Main(string[] args)
 		{
-			IFizzBuzzGenerator fizzBuzzGenerator = new V2.FizzBuzzGenerator();
-			string rangeFizzBuzz;
-			float minRangeValue = 0;
-			float maxRangeValue = 0;
+			IFizzBuzzGenerator fizzBuzzGenerator = new FizzBuzzGenerator();
+			string fizzBuzzResult;
+			string minRangeValue;
+			string maxRangeValue;
 
 			while (true)
 			{
@@ -32,27 +34,26 @@ namespace FizzBuzz
 				Console.ForegroundColor = ConsoleColor.Red;
 				Console.WriteLine("Please, enter the range:");
 				Console.Write(" Min: ");
-				minRangeValue = float.TryParse(Console.ReadLine(), out float min) ? min : 0;
+				minRangeValue = Console.ReadLine();
 				Console.Write(" Max: ");
-				maxRangeValue = float.TryParse(Console.ReadLine(), out float max) ? max : 0;
+				maxRangeValue = Console.ReadLine();
 				Console.WriteLine();
 				Console.WriteLine();
 
 				//Create FizzBuzz Message
-				Console.ForegroundColor = ConsoleColor.Yellow;
-				Console.WriteLine($"FIZZ - BUZZ RESULT [{(int)Math.Round(minRangeValue)},{(int)Math.Round(maxRangeValue)}]:");
-
 				try
 				{
-					rangeFizzBuzz = fizzBuzzGenerator.GenerateFizzBuzzForRange(minRangeValue, maxRangeValue);
+					fizzBuzzResult = fizzBuzzGenerator.GenerateFizzBuzzForRange(minRangeValue, maxRangeValue);
 				}
 				catch (ArgumentException argumentException)
 				{
-					rangeFizzBuzz = argumentException.Message;
+					fizzBuzzResult = argumentException.Message;
 				}
 
 				//Print the FizzBuzz Message and Continue
-				Console.WriteLine(rangeFizzBuzz);
+				Console.ForegroundColor = ConsoleColor.Yellow;
+				Console.WriteLine($"FIZZ - BUZZ RESULT {fizzBuzzGenerator.Range}:");
+				Console.WriteLine(fizzBuzzResult);
 				Console.WriteLine();
 				Console.WriteLine();
 
