@@ -1,49 +1,20 @@
 ﻿using System;
-using System.Text;
 
 namespace FizzBuzz.V1
 {
-	public class FizzBuzzGenerator : IFizzBuzzGenerator
+	public class FizzBuzzGenerator : FizzBuzzGeneratorBase
 	{
-		#region Private Fields
-
-		private StringBuilder _rangeFizzBuzzStringBuilder;
-
-		#endregion
-
-		#region Public Constructor
-
-		public FizzBuzzGenerator()
-		{
-			_rangeFizzBuzzStringBuilder = new StringBuilder();
-		}
-
-		#endregion
-
 		#region Public Methods
 
-		/// <summary>
-		/// Generate the FizzBuzz message for all the values in an inclusive range [float <paramref name="minRangeValue"/>, float <paramref name="maxRangeValue"/>] separated by a new line.
-		/// </summary>
-		/// <param name="minRangeValue"></param>
-		/// <param name="maxRangeValue"></param>
-		public string GenerateFizzBuzzForRange(float minRangeValue = 1, float maxRangeValue = 100)
-		{
-			return GenerateFizzBuzzForRange((int)Math.Round(minRangeValue), (int)Math.Round(maxRangeValue));
-		}
-
-		/// <summary>
-		/// Generate the FizzBuzz message for all the values in an inclusive range [int <paramref name="minRangeValue"/>, int <paramref name="maxRangeValue"/>] separated by a new line.
-		/// </summary>
-		/// <param name="minRangeValue"></param>
-		/// <param name="maxRangeValue"></param>
-		public string GenerateFizzBuzzForRange(int minRangeValue = 1, int maxRangeValue = 100)
+		public override string GenerateFizzBuzzForRange(int minRangeValue = 1, int maxRangeValue = 100)
 		{
 			if (minRangeValue > maxRangeValue)
 			{
+				Range = string.Empty;
 				throw new ArgumentException("Invalid range");
 			}
 
+			Range = $"[{minRangeValue}, {maxRangeValue}]";
 			_rangeFizzBuzzStringBuilder.Clear();
 
 			for (int i = minRangeValue; i <= maxRangeValue; i++)
